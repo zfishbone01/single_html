@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字游戏</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        #guess-input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>猜数字游戏</h1>
+    <p>我已经选择了一个 1 到 100 之间的数字，你猜是多少？</p>
+    <input type="number" id="guess-input" placeholder="请输入你的猜测">
+    <button onclick="checkGuess()">检查</button>
+    <p id="result"></p>
+
+    <script>
+        // 生成随机数
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess-input').value);
+            const resultElement = document.getElementById('result');
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                resultElement.textContent = "请输入 1 到 100 之间的数字!";
+            } else if (guess === randomNumber) {
+                resultElement.textContent = "恭喜你，猜对了！";
+            } else if (guess < randomNumber) {
+                resultElement.textContent = "太小了，请再试一次。";
+            } else {
+                resultElement.textContent = "太大了，请再试一次。";
+            }
+        }
+    </script>
+</body>
+</html>
